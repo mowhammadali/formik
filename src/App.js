@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Routes , Route, Navigate } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// styles
+import { ThemeProvider } from 'styled-components';
+import { primay } from './styles/Theme/Theme';
+
+// components
+import SignUp from './Components/SignUp';
+import Login from './Components/Login';
+
+const App = () => {
+    return (
+        <React.Fragment>
+            <ThemeProvider theme={primay}>
+                <Routes>
+                    <Route path='/' element={<SignUp />}/>
+                    <Route path='/login' element={<Login />}/>
+                    <Route path='*' element={<Navigate to="/" replace/>}/>
+                </Routes>
+            </ThemeProvider>
+        </React.Fragment>
+    );
+};
 
 export default App;
